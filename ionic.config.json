@@ -1,0 +1,7 @@
+{
+  "name": "legalReason",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
