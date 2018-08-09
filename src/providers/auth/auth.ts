@@ -1,22 +1,31 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiRequestProvider } from '../../providers/api-request/api-request';
+
 import "rxjs/add/operator/map";
 
 @Injectable()
 export class AuthProvider {
-  
-  private url = "http://www.razonlegal.co/api/v1/sessions"
+	idToken: string;
 
-  contentHeader =  new HttpHeaders({
-    'Content-Type':  'application/json'
-  })
-
-  constructor(public http: HttpClient) {
-    console.log('Hello AuthProvider Provider');
+  constructor(
+		public api: ApiRequestProvider) {
+			console.log('Hello AuthProvider Provider');
   }
 
   login(credentials){
-    return this.http.post(this.url, JSON.stringify({user: credentials}), { headers: this.contentHeader })
-      .map(res => res)
-  }
+    return this.api.post('sessions', JSON.stringify({user: credentials}))
+			.map(data => this.saveData(data))
+	}
+
+	saveData(data) {
+		console.log(data.auth_token)
+		localStorage.setItem('token', data.auth_token);
+	}
+
+	logout() {
+		localStorage.removeItem('token');	
+	}
+
+  public scheduleRefresh() {
+	}
 }
