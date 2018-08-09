@@ -7,33 +7,11 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  private username: string;
-  private password: string;
-	loading = false;
-	submitted = false;
-	returnUrl: string;
-	error = '';
-
-  constructor(public navCtrl: NavController, public auth: AuthProvider) {
+	constructor(public navCtrl: NavController, public auth: AuthProvider) {
   }
 
-	submitlogin(){
-		this.submitted = true;
-
-		this.auth.login({email: this.username, password: this.password})
-			.subscribe(
-				data => { 
-				  this.error = '';
-					this.redirectToHome() },
-				error => {
-					this.error = error.error.error;
-					this.loading = false;
-				}
-			)
-	}
-
-  redirectToHome() {
-		this.navCtrl.push('LoginPage');
-  }
-  
+ 
+	openPage(page: string) {
+		this.navCtrl.push(page);
+	} 
 }
