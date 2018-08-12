@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+
 import { AuthProvider } from '../providers/auth/auth';
 import { ApiRequestProvider } from '../providers/api-request/api-request';
 

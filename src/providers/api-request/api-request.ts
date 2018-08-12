@@ -15,12 +15,20 @@ export class ApiRequestProvider {
 	
 	httpOptions = {
 		headers: new HttpHeaders({
-			'Content-Type':  'application/json'
+			'Content-Type':  'application/json',
+			'Authorization': this.getToken()
 		})
 	}
+
   constructor(public http: HttpClient) {
     console.log('Hello ApiRequestProvider Provider');
   }
+
+  getToken(){
+    let token = localStorage.getItem('token')
+    console.log(token)
+		return token ? token : " " 
+	}
 
   get(endpoint: string, params?: any, reqOpts?: any) {
     return this.http.get(this.url + '/' + endpoint, this.httpOptions)

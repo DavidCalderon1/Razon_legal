@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -29,7 +30,8 @@ export class LoginPage {
 
 	submitlogin(){
 		this.submitted = true;
-
+		this.loading = true;
+		
 		this.auth.login({email: this.username, password: this.password})
 			.subscribe(
 				data => { 
@@ -43,6 +45,6 @@ export class LoginPage {
 	}
 
   redirectToHome() {
-		this.navCtrl.push('HomePage');
+		this.navCtrl.push(HomePage);
   }
 }
