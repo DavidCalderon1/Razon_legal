@@ -28,8 +28,13 @@ export class QuestionsPage {
   ionViewDidLoad() {
     return this.api.get('questions', {})
 			.subscribe(
-				data => this.questions = data ,
-				error => console.log(error)
+        (data) => { // Success
+          console.log('data:'+data);
+          this.questions = data;
+        },
+        (error) =>{
+          console.log(error);
+        }
 			)
   }
 
